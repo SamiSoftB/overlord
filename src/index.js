@@ -6,14 +6,17 @@ import "./styles.css";
 
 const app = createOvermind({
   state: {
-    count: 0
+    count: 1,
+    mean: 2
   },
   actions: {
     increaseCount({ state }) {
-      state.count++;
+      state.count = 2 * state.count;
+      state.mean = (3 / 2) * state.count;
     },
     decreaseCount({ state }) {
-      state.count--;
+      state.count = state.count / 2;
+      state.mean = state.count;
     }
   }
 });
@@ -26,8 +29,9 @@ function App() {
   return (
     <div className="App">
       <h1>{state.count}</h1>
+      <h1>{state.mean}</h1>
       <button onClick={() => actions.decreaseCount()}>decrease</button>
-      <button onClick={() => actions.increaseCount()}>increase</button>
+      <button onClick={() => actions.increaseCount()}>double</button>
     </div>
   );
 }
